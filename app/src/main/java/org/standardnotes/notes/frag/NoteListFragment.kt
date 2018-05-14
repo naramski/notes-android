@@ -59,7 +59,7 @@ class NoteListFragment : Fragment(), SyncManager.SyncListener {
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         SyncManager.subscribe(this)
         list.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -131,7 +131,7 @@ class NoteListFragment : Fragment(), SyncManager.SyncListener {
     override fun onSyncFailed() {
         swipeRefreshLayout.isRefreshing = false
         // TODO this always assumes it's a network error, but the server may have errored or the local store may have failed
-        currentSnackbar = Snackbar.make(activity.rootView, R.string.error_fail_sync, Snackbar.LENGTH_INDEFINITE)
+        currentSnackbar = Snackbar.make(activity!!.rootView, R.string.error_fail_sync, Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.sync_retry, {
                     SyncManager.sync()
                 })
@@ -177,11 +177,11 @@ class NoteListFragment : Fragment(), SyncManager.SyncListener {
                 startActivity(intent)
             }
             itemView.setOnLongClickListener {
-                val popup = PopupMenu(activity, itemView)
-                popup.menu.add(activity.getString(R.string.action_delete))
+                val popup = PopupMenu(activity!!, itemView)
+                popup.menu.add(activity!!.getString(R.string.action_delete))
                 val noteIdToDelete = note!!.uuid // possible for view's assigned note to change while popup is displayed if sync happens!
                 popup.setOnMenuItemClickListener {
-                    AlertDialog.Builder(activity)
+                    AlertDialog.Builder(activity!!)
                             .setTitle(R.string.title_delete_confirm)
                             .setMessage(R.string.prompt_are_you_sure)
                             .setPositiveButton(R.string.action_delete, { dialogInterface, i ->
@@ -201,7 +201,7 @@ class NoteListFragment : Fragment(), SyncManager.SyncListener {
 
     inner class Adapter : RecyclerView.Adapter<NoteHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): NoteHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
             return NoteHolder(LayoutInflater.from(activity).inflate(R.layout.item_note, parent, false))
         }
 

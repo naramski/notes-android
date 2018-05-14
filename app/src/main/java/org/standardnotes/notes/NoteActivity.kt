@@ -30,7 +30,7 @@ class NoteActivity : BaseActivity() {
 
             if (revealX != 0) {
 
-                val rootView = findViewById(android.R.id.content)
+                val rootView = findViewById<View>(android.R.id.content)
                 val viewTreeObserver = rootView.viewTreeObserver
                 if (viewTreeObserver.isAlive) {
                     rootView.visibility = View.INVISIBLE
@@ -58,7 +58,7 @@ class NoteActivity : BaseActivity() {
     }
 
     private fun circularReveal() {
-        val rootView = findViewById(android.R.id.content)
+        val rootView = findViewById<View>(android.R.id.content)
         val circularReveal = ViewAnimationUtils.createCircularReveal(rootView, revealX, revealY, 0f, Math.max(rootView.width, rootView.height).toFloat())
         circularReveal.duration = REVEAL_ANIM_DURATION
         rootView.visibility = View.VISIBLE
@@ -66,7 +66,7 @@ class NoteActivity : BaseActivity() {
     }
 
     private fun circularHide() {
-        val rootView = findViewById(android.R.id.content)
+        val rootView = findViewById<View>(android.R.id.content)
         val circularHide = ViewAnimationUtils.createCircularReveal(rootView, revealX, revealY, Math.max(rootView.width, rootView.height).toFloat(), 0f)
         circularHide.duration = REVEAL_ANIM_DURATION
         circularHide.addListener(object : Animator.AnimatorListener {
@@ -94,7 +94,7 @@ class NoteActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             if (NavUtils.getParentActivityIntent(this) != null) {
-                NavUtils.navigateUpTo(this, NavUtils.getParentActivityIntent(this).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                NavUtils.navigateUpTo(this, NavUtils.getParentActivityIntent(this)!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             } else {
                 onBackPressed()
             }

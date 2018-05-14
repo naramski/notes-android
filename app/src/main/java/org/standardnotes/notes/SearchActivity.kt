@@ -58,7 +58,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             if (NavUtils.getParentActivityIntent(this) != null) {
-                NavUtils.navigateUpTo(this, NavUtils.getParentActivityIntent(this).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                NavUtils.navigateUpTo(this, NavUtils.getParentActivityIntent(this)!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             } else {
                 onBackPressed()
             }

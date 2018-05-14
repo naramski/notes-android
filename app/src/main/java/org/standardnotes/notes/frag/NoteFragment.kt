@@ -54,12 +54,12 @@ class NoteFragment : Fragment(), SyncManager.SyncListener {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.frag_note, container, false)
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val context = activity as AppCompatActivity
         context.setSupportActionBar(toolbar)
@@ -142,7 +142,7 @@ class NoteFragment : Fragment(), SyncManager.SyncListener {
             tagsLayout.removeAllViews()
             tags.forEach {
                 val tagItem = LayoutInflater.from(activity).inflate(R.layout.item_tag_lozenge, tagsLayout, false)
-                (tagItem.findViewById(R.id.tagText) as TextView).text = it.title
+                (tagItem.findViewById<TextView>(R.id.tagText)).text = it.title
                 tagsLayout.addView(tagItem)
             }
         } else {

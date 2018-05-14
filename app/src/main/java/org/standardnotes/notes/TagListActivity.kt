@@ -48,7 +48,7 @@ class TagListActivity : BaseActivity() {
 
         fab.setOnClickListener {
             val layout = LayoutInflater.from(this).inflate(R.layout.view_new_tag, null, false)
-            val input = layout.findViewById(R.id.tag) as EditText
+            val input = layout.findViewById<EditText>(R.id.tag)
             val dialog = AlertDialog.Builder(this).setTitle(R.string.prompt_new_tag)
                     .setNegativeButton(R.string.action_cancel, null)
                     .setPositiveButton(R.string.action_ok, { dialogInterface, i ->
@@ -117,7 +117,7 @@ class TagListActivity : BaseActivity() {
                     }
                 }
             }
-        private val title: CheckBox = itemView.findViewById(R.id.title) as CheckBox
+        private val title: CheckBox = itemView.findViewById<CheckBox>(R.id.title)
 
         init {
             itemView.setOnLongClickListener {
@@ -151,7 +151,7 @@ class TagListActivity : BaseActivity() {
 
     inner class Adapter : RecyclerView.Adapter<TagHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TagHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagHolder {
             return TagHolder(LayoutInflater.from(this@TagListActivity).inflate(R.layout.item_tag, parent, false))
         }
 
