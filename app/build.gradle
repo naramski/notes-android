@@ -6,7 +6,7 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        applicationId "org.standardnotes.notes"
+        applicationId "net.nowina.notes"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 10403
